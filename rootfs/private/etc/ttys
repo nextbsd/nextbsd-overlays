@@ -42,7 +42,14 @@ ttyv8	"/usr/local/bin/xdm -nodaemon"	xterm	off secure
 # and no getty starts on it. On a board whose only remote access is a
 # serial cable that means attaching a monitor silently costs you the
 # serial login. onifexists starts one whenever the device is there.
-ttyu0	"/usr/libexec/getty 3wire"	vt100	onifexists secure
+# std.115200, not 3wire: the 3wire gettytab entry is sp#0, meaning "inherit
+# whatever speed the port is already at". That works while the serial port
+# IS the console, because the kernel holds it at the console speed. The
+# moment vt(4) claims a framebuffer the console moves, nothing is holding
+# the port, and the getty comes up at the tty default of 9600 -- while the
+# kernel is still printing at 115200. Two speeds on one wire, and the
+# symptom is a login prompt that reads as line noise. Pin it instead.
+ttyu0	"/usr/libexec/getty std.115200"	vt100	onifexists secure
 ttyu1	"/usr/libexec/getty 3wire"	vt100	onifconsole secure
 ttyu2	"/usr/libexec/getty 3wire"	vt100	onifconsole secure
 ttyu3	"/usr/libexec/getty 3wire"	vt100	onifconsole secure
