@@ -37,7 +37,12 @@ ttyv7	"/usr/libexec/getty Pc"		xterm	onifexists secure
 ttyv8	"/usr/local/bin/xdm -nodaemon"	xterm	off secure
 # Serial terminals
 # The 'dialup' keyword identifies dialin lines to login, fingerd etc.
-ttyu0	"/usr/libexec/getty 3wire"	vt100	onifconsole secure
+# onifexists, not onifconsole: once vt(4) claims a framebuffer the console
+# IS the framebuffer, so a serial port stops qualifying as "the console"
+# and no getty starts on it. On a board whose only remote access is a
+# serial cable that means attaching a monitor silently costs you the
+# serial login. onifexists starts one whenever the device is there.
+ttyu0	"/usr/libexec/getty 3wire"	vt100	onifexists secure
 ttyu1	"/usr/libexec/getty 3wire"	vt100	onifconsole secure
 ttyu2	"/usr/libexec/getty 3wire"	vt100	onifconsole secure
 ttyu3	"/usr/libexec/getty 3wire"	vt100	onifconsole secure
