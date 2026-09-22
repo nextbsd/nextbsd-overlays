@@ -1,6 +1,5 @@
 #
-# /etc/sudoers: Darwin's sudoers (apple-oss-distributions/sudo, sudo-114.100.11,
-# files/sudoers). The only change is lecture = never in place of lecture_file.
+# Sample /etc/sudoers file.
 #
 # This file MUST be edited with the 'visudo' command as root.
 #
@@ -23,8 +22,6 @@ Defaults	env_keep += "DISPLAY XAUTHORIZATION XAUTHORITY"
 Defaults	env_keep += "EDITOR VISUAL"
 Defaults	env_keep += "HOME MAIL"
 
-# NextBSD: no lecture. Darwin sets lecture_file = "/etc/sudo_lecture"; lecture = never
-# also stops sudo falling back to its built-in lecture.
 Defaults	lecture = never
 
 # Remove this line to log successful sudo launches. May contain sensitive
