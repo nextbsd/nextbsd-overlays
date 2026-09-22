@@ -17,3 +17,4 @@ done
 chmod 0600 "$DEST/private/etc/master.passwd" 2>/dev/null || true
 # sudo rejects sudoers.d files that are group- or world-writable; ship them 0440.
 chmod 0440 "$DEST"/private/etc/sudoers.d/* 2>/dev/null || true
+chmod 0440 "$DEST/private/etc/sudoers" 2>/dev/null || true
