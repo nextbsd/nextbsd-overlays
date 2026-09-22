@@ -1,2 +1,0 @@
-# Keeps /etc/sudoers.d in the image, empty as on Darwin. sudo skips files
-# whose names contain a ".", so this one is never read as sudoers.
