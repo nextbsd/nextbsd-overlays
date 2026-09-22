@@ -1,6 +1,0 @@
-# /etc/sudoers.d/admin: members of the admin group may run any command as
-# any user. No NOPASSWD, so sudo authenticates through /etc/pam.d/sudo: a user
-# with a password must type it; a user with no password (pam_unix nullok) is
-# not prompted. Must be owned by root and not group- or world-writable.
-
-%admin ALL = (ALL) ALL
