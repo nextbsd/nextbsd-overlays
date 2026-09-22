@@ -1,0 +1,22 @@
+# /etc/zshenv -- read by every zsh(1), interactive or not, before any
+# user file. Keep it small and free of external commands: scripts pay for
+# whatever runs here.
+#
+# Per-user additions go in ~/.zshenv.
+
+# PATH: what login(1) and sudo(8) give a session (login.conf), plus the
+# NextBSD and Gershwin tool directories where they exist. path/PATH are
+# tied, and -U keeps the list free of duplicates when PATH is inherited.
+typeset -U path
+path=(/sbin /bin /usr/sbin /usr/bin /usr/local/sbin /usr/local/bin /usr/libexec $path)
+for _d in /System/Library/Tools /Local/Library/Tools; do
+	[[ -d $_d ]] && path+=($_d)
+done
+unset _d
+export PATH
+
+# Default editor: pico, as on Darwin (/usr/bin/nano opens it too). Only when
+# the session did not choose one.
+: ${EDITOR:=pico}
+: ${VISUAL:=$EDITOR}
+export EDITOR VISUAL
