@@ -26,7 +26,9 @@ Defaults	env_keep += "DISPLAY XAUTHORIZATION XAUTHORITY"
 Defaults	env_keep += "EDITOR VISUAL"
 Defaults	env_keep += "HOME MAIL"
 
-Defaults	lecture_file = "/etc/sudo_lecture"
+# No lecture: Darwin sets lecture_file = "/etc/sudo_lecture"; NextBSD shows none.
+# lecture = never is required, or sudo falls back to its built-in lecture.
+Defaults	lecture = never
 
 ##
 # NextBSD additions
