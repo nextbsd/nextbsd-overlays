@@ -1,10 +1,12 @@
-# /etc/pam.d/sudo — sudo privilege escalation.
+# sudo: auth account password session
 #
-# Apple-source PAM port iter 3 (issue #97). The sudo package may
-# install its own /etc/pam.d/sudo if/when it's pulled in; until
-# then this overlay keeps the service consistent with login/su.
-# Delegates everything to system.
-
+# Darwin's shape (apple-oss-distributions/sudo, pam.d/sudo): local additions go
+# in /etc/pam.d/sudo_local, which is not shipped and so survives updates; copy
+# sudo_local.template to start one. A missing sudo_local is skipped by OpenPAM.
+# Darwin's pam_smartcard/pam_opendirectory lines become the system stack, whose
+# pam_unix ... nullok lets an account with no password through without a prompt
+# and makes an account with a password type it.
+auth		include		sudo_local
 auth		sufficient	pam_rootok.so		no_warn
 auth		include		system
 account		include		system
