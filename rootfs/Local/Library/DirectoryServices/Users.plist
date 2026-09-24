@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>admin</key>
+	<dict>
+		<key>username</key>
+		<string>admin</string>
+		<key>uid</key>
+		<integer>5000</integer>
+		<key>gid</key>
+		<integer>5000</integer>
+		<key>realName</key>
+		<string>Local Administrator</string>
+		<key>shell</key>
+		<string>/bin/zsh</string>
+		<key>noPassword</key>
+		<true/>
+	</dict>
+</dict>
+</plist>

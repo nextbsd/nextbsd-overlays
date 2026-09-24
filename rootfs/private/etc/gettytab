@@ -216,6 +216,9 @@ al.230400:\
 al.Pc:\
 	:al=root:tc=Pc
 
+nextbsd-autologin:\
+	:al=admin:tc=3wire.9600:
+
 #
 # Entries for 3-wire serial terminals.  These don't supply carrier, so
 # clocal needs to be set, and crtscts needs to be unset.
