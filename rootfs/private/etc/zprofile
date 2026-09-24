@@ -1,0 +1,9 @@
+# /etc/zprofile -- read by login zsh(1) shells, after /etc/zshenv and
+# before /etc/zshrc.
+#
+# Per-user additions go in ~/.zprofile.
+
+# A UTF-8 locale unless the session already set one.
+if [[ -z $LANG ]]; then
+	export LANG=C.UTF-8
+fi
