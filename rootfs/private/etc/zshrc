@@ -18,7 +18,10 @@ ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd history completion)
 if [[ $NEXTBSD_ZSH_PLUGINS != no ]]; then
 	[[ -r /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh ]] &&
 		source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-	# Sourced after the other widgets, as upstream requires.
+	# Sourced after the other widgets, as upstream requires. brackets is
+	# worth having alongside main: it colours an unbalanced quote or
+	# parenthesis, which is the mistake you most want to see before Enter.
+	ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets)
 	[[ -r /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] &&
 		source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
