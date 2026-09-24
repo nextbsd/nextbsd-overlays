@@ -1,19 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-  The local user database, read by nss_directory_services(8).
-
-  Seeded with one account so a fresh image has somebody to be. It has no
-  password, which is what makes the console log in automatically (the rule
-  is in /usr/libexec/nextbsd/autologin-user): set a password, or add a
-  second user, and the login prompt comes back by itself.
-
-  This file is a LIVE DATABASE. adduser(8), passwd(1) and the group tools
-  rewrite it. It is seeded by the image builder and owned by no package,
-  deliberately: pkg(8) marks nothing @config here, so a package that owned
-  this path would restore the shipped copy on upgrade and take every
-  account on the machine with it.
--->
 <plist version="1.0">
 <dict>
 	<key>admin</key>

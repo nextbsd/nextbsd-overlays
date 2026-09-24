@@ -216,20 +216,6 @@ al.230400:\
 al.Pc:\
 	:al=root:tc=Pc
 
-#
-# NextBSD: automatic login for the sole administrator.
-#
-# Used by org.nextbsd.getty only when /usr/libexec/nextbsd/autologin-user
-# says so, which it does when exactly one user exists, it is admin, and it
-# has no password. Set a password or add a second user and the login prompt
-# comes back on the next boot.
-#
-# It chains to 3wire.9600 rather than std.9600, unlike the stock autologin
-# entries above: the getty job serves both the serial console and ttyv0 with
-# 3wire settings, and nc (no carrier) is what stopped the arm64 pl011 hanging
-# after login (nextbsd#355). The name in al= cannot be computed at run time,
-# which is why the helper authorises this one account and no other.
-#
 nextbsd-autologin:\
 	:al=admin:tc=3wire.9600:
 

@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-  The local group database, read by nss_directory_services(8).
-
-  admin is gid 5000 and is what /etc/sudoers grants, through its
-  "%admin ALL = (ALL) ALL" line. The NSS module also gives members of this
-  group wheel (gid 0) in their group set, so an administrator is in wheel
-  without wheel's own member list naming them, which is how Darwin behaves.
-
-  Seeded, not packaged: see the note in Users.plist.
--->
 <plist version="1.0">
 <dict>
 	<key>admin</key>
