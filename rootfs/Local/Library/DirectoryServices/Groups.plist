@@ -4,10 +4,10 @@
 <dict>
 	<key>admin</key>
 	<dict>
-		<key>groupname</key>
-		<string>admin</string>
 		<key>gid</key>
 		<integer>5000</integer>
+		<key>groupname</key>
+		<string>admin</string>
 		<key>members</key>
 		<array>
 			<string>admin</string>
