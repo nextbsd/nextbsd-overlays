@@ -4,18 +4,18 @@
 <dict>
 	<key>admin</key>
 	<dict>
-		<key>username</key>
-		<string>admin</string>
-		<key>uid</key>
-		<integer>5000</integer>
 		<key>gid</key>
 		<integer>5000</integer>
+		<key>noPassword</key>
+		<true/>
 		<key>realName</key>
 		<string>Local Administrator</string>
 		<key>shell</key>
 		<string>/bin/zsh</string>
-		<key>noPassword</key>
-		<true/>
+		<key>uid</key>
+		<integer>5000</integer>
+		<key>username</key>
+		<string>admin</string>
 	</dict>
 </dict>
 </plist>
