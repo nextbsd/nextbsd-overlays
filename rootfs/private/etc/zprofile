@@ -7,3 +7,11 @@
 if [[ -z $LANG ]]; then
 	export LANG=C.UTF-8
 fi
+
+# The login banner. ZSH_VERSION is not exported by zsh, so pass it for the
+# shell line; nextbsd-fetch prints the shell's name alone without it rather
+# than guessing. It stays quiet where a login window is installed, where
+# ~/.hushlogin exists, and when this is not a terminal.
+if [[ -o interactive ]] && [[ -x /usr/bin/nextbsd-fetch ]]; then
+	ZSH_VERSION=$ZSH_VERSION /usr/bin/nextbsd-fetch
+fi
