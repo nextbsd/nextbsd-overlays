@@ -1,0 +1,6 @@
+  Running from live media. Nothing is written to disk.
+
+  01   set a password for admin    passwd
+  02   set the time zone           sudo tzsetup
+  03   connect to wireless         sudo wlan
+  04   install NextBSD to disk     sudo nextbsd-installer
