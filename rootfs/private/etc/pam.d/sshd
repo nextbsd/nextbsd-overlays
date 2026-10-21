@@ -13,9 +13,21 @@
 #   auth     required  pam_unix.so   no_warn try_first_pass
 #   account  required  pam_unix.so
 #   session  required  pam_uwtmp.so
+#   session  optional  pam_launchd.so   (keep it; see below)
 #   password required  pam_unix.so   no_warn try_first_pass
 
 auth		required	pam_permit.so
 account		required	pam_permit.so
 session		required	pam_permit.so
+# pam_launchd moves the SSH session into the user's per-user launchd
+# bootstrap (Background session), so processes started from the session
+# look up Mach services the way they do on Darwin (nextbsd-userland#354).
+# Darwin 10.9 lists it in sshd as `session required`; NextBSD uses
+# `optional`. The module returns PAM_IGNORE whenever the per-user launchd
+# is missing or fails its probes, and the session then stays on the root
+# bootstrap. Darwin puts it ahead of pam_mount, which NextBSD does not ship;
+# here it is the last session module.
+# OpenPAM still rejects the whole sshd service if /usr/lib/pam_launchd.so.6
+# cannot be loaded, so this line needs a userland that ships the module.
+session		optional	pam_launchd.so
 password	required	pam_permit.so
