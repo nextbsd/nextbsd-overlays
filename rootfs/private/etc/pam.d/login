@@ -16,6 +16,18 @@ account		include		system
 # session
 session		optional	pam_exec.so		/usr/sbin/createhomedir -P
 session		include		system
+# pam_launchd moves the login session into the user's per-user launchd
+# bootstrap (Background session), as Darwin's console login does
+# (nextbsd-userland#354). Darwin 10.9 lists it in login as
+# `session required`; NextBSD uses `optional`. The module returns
+# PAM_IGNORE whenever the per-user launchd is missing or fails its probes
+# (including a lookup PID 1 must answer through the per-user launchd), and
+# the session then stays on the root bootstrap.
+# It goes here, in login itself, and never in pam.d/system: sudo includes
+# system, and a sudo must keep the caller's bootstrap.
+# OpenPAM still rejects the whole login service if /usr/lib/pam_launchd.so.6
+# cannot be loaded, so this line needs a userland that ships the module.
+session		optional	pam_launchd.so
 
 # password
 password	include		system
