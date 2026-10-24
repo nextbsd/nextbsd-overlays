@@ -32,6 +32,8 @@ www:*:80:
 u2f:*:116:
 ntpd:*:123:
 _ypldap:*:160:
+_lp:*:193:
+_lpadmin:*:631:
 hast:*:845:
 tests:*:977:
 nogroup:*:65533:

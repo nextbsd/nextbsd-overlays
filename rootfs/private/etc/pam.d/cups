@@ -1,0 +1,12 @@
+# /etc/pam.d/cups — CUPS (cupsd) Basic authentication, for requests that
+# need @SYSTEM (the admin and _lpadmin groups) or the job's owner.
+#
+# Apple's pam.opendirectory for cups, with NextBSD's modules: authenticate
+# with pam_unix, never change a password through CUPS. Unlike the shared
+# "system" stack this has no nullok: an account with an empty password can't
+# authenticate to cupsd.
+
+auth		required	pam_unix.so		no_warn try_first_pass
+account		required	pam_unix.so
+session		required	pam_permit.so
+password	required	pam_deny.so
