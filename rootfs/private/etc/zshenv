@@ -5,10 +5,11 @@
 # Per-user additions go in ~/.zshenv.
 
 # PATH: what login(1) and sudo(8) give a session (login.conf), plus the
-# NextBSD and Gershwin tool directories where they exist. path/PATH are
+# NextBSD and Gershwin tool directories where they exist. /usr/X11/bin is
+# base's X11 (E23), ahead of /usr/local as its libraries are. path/PATH are
 # tied, and -U keeps the list free of duplicates when PATH is inherited.
 typeset -U path
-path=(/sbin /bin /usr/sbin /usr/bin /usr/local/sbin /usr/local/bin /usr/libexec $path)
+path=(/sbin /bin /usr/sbin /usr/bin /usr/X11/bin /usr/local/sbin /usr/local/bin /usr/libexec $path)
 for _d in /System/Library/Tools /Local/Library/Tools; do
 	[[ -d $_d ]] && path+=($_d)
 done
