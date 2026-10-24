@@ -6,5 +6,6 @@
 #   if [ -x /usr/libexec/path_helper ]; then
 #       eval "$(/usr/libexec/path_helper -s)"
 #   fi
-# Until then this is an intentionally minimal stub so login shells have a
+# and base's /usr/X11/bin moves from login.conf to /etc/paths.d/X11, as on
+# Darwin. Until then this is an intentionally minimal stub so login shells have a
 # system-wide profile to source.
