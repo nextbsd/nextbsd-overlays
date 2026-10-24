@@ -6,11 +6,18 @@
 set -eu
 DEST=${1:?usage: seed.sh <destroot>}
 cd "$(dirname "$0")/rootfs"
-find . -type f | while IFS= read -r rel; do
+# Symlinks (e.g. /etc/fonts/conf.d/*.conf -> /usr/share/fontconfig/conf.avail)
+# are recreated as symlinks, never followed: their targets belong to packages
+# and need not exist yet. `-L` also catches a dangling link already at $DEST.
+find . \( -type f -o -type l \) | while IFS= read -r rel; do
     rel=${rel#./}
-    if [ ! -e "$DEST/$rel" ]; then
+    if [ ! -e "$DEST/$rel" ] && [ ! -L "$DEST/$rel" ]; then
         mkdir -p "$DEST/$(dirname "$rel")"
-        cp -p "$rel" "$DEST/$rel"
+        if [ -L "$rel" ]; then
+            ln -s "$(readlink "$rel")" "$DEST/$rel"
+        else
+            cp -p "$rel" "$DEST/$rel"
+        fi
     fi
 done
 # git can't store sub-0644 modes; master.passwd must be 0600.
