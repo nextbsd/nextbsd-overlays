@@ -11,7 +11,8 @@ touches them — once a system is installed, the administrator owns them
 ## Layout
 
 - `rootfs/` — copied onto the image root: `cp -R rootfs/. "$RF"/`
-  (`private/etc/*` account + service config, `pam.d/*`, and the
+  (`private/etc/*` account + service config, `pam.d/*`, pkg's
+  `pkg.conf` and `pkg/NextBSD.conf`, and the
   `boot/loader.conf.d/nextbsd.conf` loader fragment)
 - `iso/` — reserved for the live-ISO boot layer (currently inline in
   `nextbsd/build.sh`; to be migrated here)
@@ -56,6 +57,30 @@ ships with fc-cache in nextbsd-displayserver-support
 nextbsd-printing-support), not here: `/System` is package-owned, and the
 job must be present exactly when fc-cache is. fc-cache creates
 `/var/cache/fontconfig` (0755, root) itself, so the overlay ships no `/var`.
+
+## pkg configuration
+
+NextBSD's pkg (nextbsd-contrib `src/pkg`, patches 0002 and 0003) reads its
+configuration from Darwin's real `/etc` path rather than `/usr/local/etc`:
+
+- **`/etc/pkg.conf`** sets only `IGNORE_OSVERSION = yes`. It does not set
+  `ABI`: pkg reads the ABI from the ELF note of `/usr/bin/uname`, which on
+  NextBSD is branded `FreeBSD` with `__FreeBSD_version` 1501000, so pkg gets
+  `FreeBSD:15:amd64` or `FreeBSD:15:aarch64` (what nextbsd-pkg stamps on
+  its packages) on either architecture, with the running OSVERSION. A
+  pinned `ABI` would need an `OSVERSION` too (pkg otherwise warns on every
+  run) and would tie the file to one architecture.
+- **`/etc/pkg/NextBSD.conf`** is the NextBSD repository,
+  `https://github.com/nextbsd/nextbsd-pkg/releases/download/continuous-${MACHINE}`,
+  unsigned, priority 100. `${MACHINE}` (amd64, arm64) is NextBSD's pkg
+  variable for the release tag's architecture name, so one file serves both
+  architectures.
+
+pkg also reads `/usr/local/etc/pkg/repos/`, where a user adds any other
+repository (for example FreeBSD's). pkg itself only ever comes from the
+NextBSD repository, and packages from other repositories may only install
+under `/usr/local` and `/var`. The image build no longer writes any pkg
+configuration of its own.
 
 ## Why a separate repo
 
