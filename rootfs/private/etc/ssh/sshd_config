@@ -33,6 +33,13 @@ KbdInteractiveAuthentication yes
 PasswordAuthentication no
 PubkeyAuthentication yes
 
+# X11 forwarding (`ssh -X`/`-Y`): remote X clients draw on the user's own
+# X server through the tunnel. xauth is NextBSD-xlibre's, in /usr/X11/bin,
+# not OpenSSH's /usr/local/bin default. Without NextBSD-xlibre installed
+# sshd finds no xauth and forwarding is simply not set up.
+X11Forwarding yes
+XAuthLocation /usr/X11/bin/xauth
+
 # Log to the AUTH facility (captured by syslogd / the console log).
 SyslogFacility AUTH
 LogLevel INFO
