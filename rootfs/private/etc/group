@@ -13,7 +13,7 @@ ftp:*:14:
 staff:*:20:
 sshd:*:22:
 smmsp:*:25:
-mailnull:*:26:
+_lp:*:26:
 guest:*:31:
 video:*:44:
 realtime:*:47:
@@ -32,7 +32,6 @@ www:*:80:
 u2f:*:116:
 ntpd:*:123:
 _ypldap:*:160:
-_lp:*:193:
 _lpadmin:*:631:
 hast:*:845:
 tests:*:977:
