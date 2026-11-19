@@ -1,0 +1,21 @@
+# /etc/pam.d/authorization — passwords for settings changes.
+#
+# Copyright (c) 2026, Joseph Maloney
+# SPDX-License-Identifier: BSD-2-Clause
+#
+# SettingsHelper (/usr/libexec/SettingsHelper, nextbsd/nextbsd#628) checks
+# the name and password the settings apps' lock asks for with this
+# service, as Darwin's authd does with its own pam.d/authorization. It runs
+# as root, so pam_self (which /etc/pam.d/login lists) would let anyone in
+# and is left out. There is no session: nobody logs in.
+#
+# nullok, as in /etc/pam.d/system: an administrator whose account has no
+# password (the default "admin") authenticates with an empty one. The
+# settings apps show such an admin "Allow changes?" with no password field.
+# Remove nullok here to make every settings change need a real password.
+
+# auth
+auth		required	pam_unix.so		no_warn nullok
+
+# account
+account		required	pam_unix.so
