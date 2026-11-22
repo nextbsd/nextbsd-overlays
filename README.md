@@ -58,6 +58,17 @@ nextbsd-printing-support), not here: `/System` is package-owned, and the
 job must be present exactly when fc-cache is. fc-cache creates
 `/var/cache/fontconfig` (0755, root) itself, so the overlay ships no `/var`.
 
+## The graphical login's PAM service
+
+`private/etc/pam.d/loginwindow` is loginwindow's PAM service (from
+[apps-loginwindow](https://github.com/nextbsd/apps-loginwindow)'s
+`pam.d/loginwindow`, which explains its lines). This copy is the one source:
+images get it from here, and a system installed from an older image gets the
+same text from `NextBSD-desktop-apps`' post-install script, which nextbsd-pkg
+builds from this file and which writes it only where `/etc/pam.d/loginwindow`
+is missing (nextbsd/nextbsd#676). The package never owns, replaces or removes
+it.
+
 ## pkg configuration
 
 NextBSD's pkg (nextbsd-contrib `src/pkg`, patches 0002 and 0003) reads its
